@@ -7,7 +7,7 @@ import email.header
 import fileinput
 import logging
 from logging.handlers import SysLogHandler
-import StringIO
+import io
 import smtplib
 import sys
 
@@ -30,7 +30,7 @@ logger.setLevel(logging.ERROR)
 def safe_subject(msg):
     """Clean message subject and return it."""
     decoded = email.header.decode_header(msg.get("Subject"))
-    subject = u""
+    subject = ""
     for sub, charset in decoded:
         # charset can be None
         charset = charset or "utf8"
@@ -38,7 +38,7 @@ def safe_subject(msg):
             subject += sub.decode(charset)
         except UnicodeDecodeError:
             pass
-    return u" ".join(subject.split())
+    return " ".join(subject.split())
 
 
 def send_autoreply(sender, mailbox, armessage, original_msg):
@@ -86,7 +86,7 @@ def send_autoreply(sender, mailbox, armessage, original_msg):
     subject = safe_subject(original_msg)
 
     msg = EmailMessage(
-        u"Auto: {} Re: {}".format(armessage.subject, subject),
+        "Auto: {} Re: {}".format(armessage.subject, subject),
         armessage.content.encode("utf-8"),
         mailbox.user.encoded_address,
         [sender],
@@ -115,8 +115,8 @@ class Command(BaseCommand):
         parser.add_argument(
             "--debug", action="store_true", dest="debug", default=False
         )
-        parser.add_argument("sender", type=unicode)
-        parser.add_argument("recipient", type=unicode, nargs="+")
+        parser.add_argument("sender", type=str)
+        parser.add_argument("recipient", type=str, nargs="+")
 
     def handle(self, *args, **options):
         if options["debug"]:
@@ -139,7 +139,7 @@ class Command(BaseCommand):
                 "Skip auto reply, this mail comes from a mailing list")
             return
 
-        content = StringIO.StringIO()
+        content = io.StringIO()
         for line in fileinput.input([]):
             content.write(line)
         content.seek(0)

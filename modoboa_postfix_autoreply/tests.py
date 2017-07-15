@@ -1,7 +1,7 @@
 """modoboa-postfix-autoreply unit tests."""
 
 import datetime
-import StringIO
+import io
 import sys
 
 from dateutil.relativedelta import relativedelta
@@ -342,7 +342,7 @@ class ManagementCommandTestCase(ModoTestCase):
         """Replace stdin."""
         super(ManagementCommandTestCase, self).setUp()
         self.stdin = sys.stdin
-        sys.stdin = StringIO.StringIO(SIMPLE_EMAIL_CONTENT.strip())
+        sys.stdin = io.StringIO(SIMPLE_EMAIL_CONTENT.strip())
 
     def tearDown(self):
         """Restore stdin."""
@@ -396,14 +396,14 @@ class ManagementCommandTestCase(ModoTestCase):
 
     def test_encoded_message(self):
         """Message received with encoded header"""
-        sys.stdin = StringIO.StringIO(ENCODED_EMAIL_SUBJECT.strip())
+        sys.stdin = io.StringIO(ENCODED_EMAIL_SUBJECT.strip())
         management.call_command(
             "autoreply", "homer@simpson.test", "user@test.com")
         self.assertEqual(len(mail.outbox), 1)
 
     def test_message_from_ml(self):
         """Message received from a mailing list."""
-        sys.stdin = StringIO.StringIO(EMAIL_FROM_ML_CONTENT.strip())
+        sys.stdin = io.StringIO(EMAIL_FROM_ML_CONTENT.strip())
         management.call_command(
             "autoreply", "mailer-daemon@list.test", "user@test.com")
         self.assertEqual(len(mail.outbox), 0)

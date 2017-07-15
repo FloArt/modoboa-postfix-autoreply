@@ -45,8 +45,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'modoboa-postfix-autoreply'
-copyright = u'2017, Antoine Nguyen'
+project = 'modoboa-postfix-autoreply'
+copyright = '2017, Antoine Nguyen'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -198,8 +198,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'modoboa-postfix-autoreply.tex', u'modoboa-postfix-autoreply Documentation',
-   u'Antoine Nguyen', 'manual'),
+  ('index', 'modoboa-postfix-autoreply.tex', 'modoboa-postfix-autoreply Documentation',
+   'Antoine Nguyen', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -228,8 +228,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'modoboa-postfix-autoreply', u'modoboa-postfix-autoreply Documentation',
-     [u'Antoine Nguyen'], 1)
+    ('index', 'modoboa-postfix-autoreply', 'modoboa-postfix-autoreply Documentation',
+     ['Antoine Nguyen'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -242,8 +242,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'modoboa-postfix-autoreply', u'modoboa-postfix-autoreply Documentation',
-   u'Antoine Nguyen', 'modoboa-postfix-autoreply', 'One line description of project.',
+  ('index', 'modoboa-postfix-autoreply', 'modoboa-postfix-autoreply Documentation',
+   'Antoine Nguyen', 'modoboa-postfix-autoreply', 'One line description of project.',
    'Miscellaneous'),
 ]
 
