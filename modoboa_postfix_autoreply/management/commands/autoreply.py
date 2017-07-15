@@ -34,9 +34,9 @@ def safe_subject(msg):
         # charset can be None
         charset = charset or "utf8"
         try:
-            subject += sub.decode(charset)
-        except UnicodeDecodeError:
             subject += sub
+        except UnicodeDecodeError:
+            pass
     return " ".join(subject.split())
 
 
