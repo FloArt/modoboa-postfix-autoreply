@@ -36,7 +36,7 @@ def safe_subject(msg):
         try:
             subject += sub.decode(charset)
         except UnicodeDecodeError:
-            pass
+            subject += sub
     return " ".join(subject.split())
 
 
